@@ -5,8 +5,7 @@ package Modelo;
  * @author Usuario
  */
 public class Proveedor {
-
-    private int idProveedor;
+ private int idProveedor;
     private String primerNombre;
     private String segundoNombre;
     private String primerApellido;
@@ -14,7 +13,13 @@ public class Proveedor {
     private String contacto;
     private String correo;
 
-    public Proveedor(int idProveedor, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contacto, String correo) {
+    // Constructor vacío
+    public Proveedor() {
+    }
+
+    // Constructor con todos los campos
+    public Proveedor(int idProveedor, String primerNombre, String segundoNombre, String primerApellido,
+                     String segundoApellido, String contacto, String correo) {
         this.idProveedor = idProveedor;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -24,9 +29,7 @@ public class Proveedor {
         this.correo = correo;
     }
 
-    public Proveedor() {
-    }
-
+    // Getters y Setters
     public int getIdProveedor() {
         return idProveedor;
     }
@@ -82,5 +85,4 @@ public class Proveedor {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
 }

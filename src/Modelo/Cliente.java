@@ -1,11 +1,6 @@
 package Modelo;
 
-/**
- *
- * @author Usuario
- */
 public class Cliente {
-
     private int idCliente;
     private String primerNombre;
     private String segundoNombre;
@@ -13,19 +8,6 @@ public class Cliente {
     private String segundoApellido;
     private String cedula;
     private String contacto;
-
-    public Cliente(int idCliente, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String cedula, String contacto) {
-        this.idCliente = idCliente;
-        this.primerNombre = primerNombre;
-        this.segundoNombre = segundoNombre;
-        this.primerApellido = primerApellido;
-        this.segundoApellido = segundoApellido;
-        this.cedula = cedula;
-        this.contacto = contacto;
-    }
-
-    public Cliente() {
-    }
 
     public int getIdCliente() {
         return idCliente;
@@ -82,5 +64,4 @@ public class Cliente {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
-
 }

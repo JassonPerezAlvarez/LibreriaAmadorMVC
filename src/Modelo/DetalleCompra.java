@@ -6,12 +6,16 @@ package Modelo;
  * @author Usuario
  */
 public class DetalleCompra {
-        private int idDetalleCom;
+       private int idDetalleCom;
     private int idCompra;
     private int idProducto;
     private float cantidadCom;
     private float precioCom;
 
+    // Constructor vacío
+    public DetalleCompra() {}
+
+    // Constructor completo
     public DetalleCompra(int idDetalleCom, int idCompra, int idProducto, float cantidadCom, float precioCom) {
         this.idDetalleCom = idDetalleCom;
         this.idCompra = idCompra;
@@ -20,9 +24,7 @@ public class DetalleCompra {
         this.precioCom = precioCom;
     }
 
-    public DetalleCompra() {
-    }
-
+    // Getters y Setters
     public int getIdDetalleCom() {
         return idDetalleCom;
     }
@@ -62,6 +64,4 @@ public class DetalleCompra {
     public void setPrecioCom(float precioCom) {
         this.precioCom = precioCom;
     }
-    
-    
 }

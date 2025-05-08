@@ -7,18 +7,10 @@ import java.util.Date;
  * @author Usuario
  */
 public class Venta {
-
-    private int idVenta;
+    
+     private int idVenta;
     private Date fechaVenta;
     private int idCliente;
-
-    public Venta(int idVenta, int idCliente) {
-        this.idVenta = idVenta;
-        this.idCliente = idCliente;
-    }
-
-    public Venta() {
-    }
 
     public int getIdVenta() {
         return idVenta;
@@ -43,5 +35,4 @@ public class Venta {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-
 }

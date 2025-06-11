@@ -469,33 +469,44 @@ jTableProveedores.setModel(new javax.swing.table.DefaultTableModel(
     }//GEN-LAST:event_jTextFieldBuscarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-      String texto = jTextFieldBuscar.getText().toLowerCase();
-        DefaultTableModel model = (DefaultTableModel) jTableProveedores.getModel();
-        model.setRowCount(0);
+      String texto = jTextFieldBuscar.getText().trim().toLowerCase();
 
-        List<Proveedor> proveedores = controlador.obtenerTodosProveedores();
-        boolean found = false; // Variable para verificar si se encontraron resultados
-        for (Proveedor p : proveedores) {
-            String nombreCompleto = (p.getPrimerNombre() + " " + p.getSegundoNombre() + " " +
-                                     p.getPrimerApellido() + " " + p.getSegundoApellido()).toLowerCase();
+    if (texto.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese un nombre para buscar.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
-            if (nombreCompleto.contains(texto)) {
-                model.addRow(new Object[]{
-                    p.getIdProveedor(),
-                    p.getPrimerNombre(),
-                    p.getSegundoNombre(),
-                    p.getPrimerApellido(),
-                    p.getSegundoApellido(),
-                    p.getContacto(),
-                    p.getCorreo()
-                });
-                found = true; // Se encontró al menos un resultados
-            }
+    DefaultTableModel model = (DefaultTableModel) jTableProveedores.getModel();
+    model.setRowCount(0);
+
+    List<Proveedor> proveedores = controlador.obtenerTodosProveedores();
+    boolean encontrado = false;
+
+    for (Proveedor p : proveedores) {
+        String nombreCompleto = (p.getPrimerNombre() + " " +
+                                 p.getSegundoNombre() + " " +
+                                 p.getPrimerApellido() + " " +
+                                 p.getSegundoApellido()).toLowerCase();
+
+        if (nombreCompleto.contains(texto)) {
+            model.addRow(new Object[]{
+                p.getIdProveedor(),
+                p.getPrimerNombre(),
+                p.getSegundoNombre(),
+                p.getPrimerApellido(),
+                p.getSegundoApellido(),
+                p.getContacto(),
+                p.getCorreo()
+            });
+            encontrado = true;
         }
+    }
 
-        if (!found) {
-            JOptionPane.showMessageDialog(this, "No se encontraron proveedores con ese nombre.", "Resultado de búsqueda", JOptionPane.INFORMATION_MESSAGE);
-        }
+    if (!encontrado) {
+        JOptionPane.showMessageDialog(this, "No se encontraron proveedores con ese nombre.", "Resultado de búsqueda", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "Búsqueda completada. Se encontraron resultados.", "Resultado de búsqueda", JOptionPane.INFORMATION_MESSAGE);
+    }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jTextFieldContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldContactoActionPerformed

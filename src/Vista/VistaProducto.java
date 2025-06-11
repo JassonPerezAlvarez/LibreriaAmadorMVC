@@ -4,6 +4,7 @@ import Controlador.ProductoController;
 import Modelo.Producto;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 public class VistaProducto extends javax.swing.JPanel {
 
@@ -341,24 +342,36 @@ public class VistaProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFieldBuscarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
-        String texto = jTextFieldBuscar.getText().toLowerCase();
-        DefaultTableModel model = (DefaultTableModel) jTableProducto.getModel();
-        model.setRowCount(0);
+ String texto = jTextFieldBuscar.getText().trim().toLowerCase();
 
-        List<Producto> productos = controlador.obtenerTodosProductos();
-        for (Producto p : productos) {
-            if (p.getNombre().toLowerCase().contains(texto)) {
-                model.addRow(new Object[]{
-                    p.getIdProducto(),
-                    p.getNombre(),
-                    p.getDescripcion(),
-                    p.getCantidad(),
-                    p.getPrecioComp(),
-                    p.getPrecioVent()
-                });
-            }
+    if (texto.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese un nombre de producto para buscar.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) jTableProducto.getModel();
+    model.setRowCount(0);
+
+    List<Producto> productos = controlador.obtenerTodosProductos();
+    boolean encontrado = false;
+
+    for (Producto p : productos) {
+        if (p.getNombre().toLowerCase().contains(texto)) {
+            model.addRow(new Object[]{
+                p.getIdProducto(),
+                p.getNombre(),
+                p.getDescripcion(),
+                p.getCantidad(),
+                p.getPrecioComp(),
+                p.getPrecioVent()
+            });
+            encontrado = true;
         }
+    }
+
+    if (!encontrado) {
+        JOptionPane.showMessageDialog(this, "No se encontraron productos con ese nombre.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+    }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed

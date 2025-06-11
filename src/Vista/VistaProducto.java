@@ -376,17 +376,31 @@ public class VistaProducto extends javax.swing.JPanel {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
-        String nombre = jTextFieldNombre.getText();
-        String descripcion = jTextFieldDescripcion.getText();
-        int cantidad = Integer.parseInt(jTextFieldCantidad.getText());
-        float precioCompra = Float.parseFloat(jTextFieldPrecioCompra.getText());
-        float precioVenta = Float.parseFloat(jTextFieldPrecioVenta.getText());
+        String nombre = jTextFieldNombre.getText().trim();
+    String descripcion = jTextFieldDescripcion.getText().trim();
+    String cantidadStr = jTextFieldCantidad.getText().trim();
+    String precioCompraStr = jTextFieldPrecioCompra.getText().trim();
+    String precioVentaStr = jTextFieldPrecioVenta.getText().trim();
+
+    // Validar campos vacíos
+    if (nombre.isEmpty() || descripcion.isEmpty() || cantidadStr.isEmpty() || precioCompraStr.isEmpty() || precioVentaStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos antes de guardar.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    try {
+        int cantidad = Integer.parseInt(cantidadStr);
+        float precioCompra = Float.parseFloat(precioCompraStr);
+        float precioVenta = Float.parseFloat(precioVentaStr);
 
         controlador.crearProducto(nombre, descripcion, cantidad, precioCompra, precioVenta);
         limpiarCampos();
         cargarTabla();
 
-
+        JOptionPane.showMessageDialog(this, "Producto guardado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Verifique que los campos de cantidad, precio de compra y precio de venta contengan números válidos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed

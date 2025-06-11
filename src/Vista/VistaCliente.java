@@ -13,66 +13,65 @@ import java.util.List;
 
 public class VistaCliente extends JPanel {
 
-   
-
-
-private final ClienteController controlador = new ClienteController();
-private int idClienteSeleccionado = -1;
+    private final ClienteController controlador = new ClienteController();
+    private int idClienteSeleccionado = -1;
 
     public VistaCliente() {
         initComponents();
-         cargarTablaClientes();
+        cargarTablaClientes();
 
-    // Listener para la selección de filas en la tabla
-    TablaClientes.getSelectionModel().addListSelectionListener(e -> {
-        if (!e.getValueIsAdjusting()) {
-            int fila = TablaClientes.getSelectedRow();
-            if (fila != -1) {
-                // Asumiendo columnas en jTableClientes:
-                // 0=ID_Cliente, 1=Cédula, 2=Primer Nombre, 3=Segundo Nombre,
-                // 4=Primer Apellido, 5=Segundo Apellido, 6=Contacto
+        // Listener para la selección de filas en la tabla
+        TablaClientes.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int fila = TablaClientes.getSelectedRow();
+                if (fila != -1) {
+                    // Asumiendo columnas en jTableClientes:
+                    // 0=ID_Cliente, 1=Cédula, 2=Primer Nombre, 3=Segundo Nombre,
+                    // 4=Primer Apellido, 5=Segundo Apellido, 6=Contacto
 
-                idClienteSeleccionado = (int) TablaClientes.getValueAt(fila, 0);
-                jTextFieldCedula.setText(TablaClientes.getValueAt(fila, 1).toString());
-                jTextFieldPrimerNombre.setText(TablaClientes.getValueAt(fila, 2).toString());
-                jTextFieldSegundoNombre.setText(TablaClientes.getValueAt(fila, 3).toString());
-                jTextFieldPrimerApellido.setText(TablaClientes.getValueAt(fila, 4).toString());
-                jTextFieldSegundoApellido.setText(TablaClientes.getValueAt(fila, 5).toString());
-                jTextFieldContacto.setText(TablaClientes.getValueAt(fila, 6).toString());
+                    idClienteSeleccionado = (int) TablaClientes.getValueAt(fila, 0);
+                    jTextFieldCedula.setText(TablaClientes.getValueAt(fila, 1).toString());
+                    jTextFieldPrimerNombre.setText(TablaClientes.getValueAt(fila, 2).toString());
+                    jTextFieldSegundoNombre.setText(TablaClientes.getValueAt(fila, 3).toString());
+                    jTextFieldPrimerApellido.setText(TablaClientes.getValueAt(fila, 4).toString());
+                    jTextFieldSegundoApellido.setText(TablaClientes.getValueAt(fila, 5).toString());
+                    jTextFieldContacto.setText(TablaClientes.getValueAt(fila, 6).toString());
+                }
             }
-        }
-    });
-}
+        });
+    }
 
     private void cargarTablaClientes() {
-    DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
-    model.setRowCount(0); // Limpia la tabla antes de llenarla
+        DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
+        model.setRowCount(0); // Limpia la tabla antes de llenarla
 
-    List<Cliente> clientes = controlador.obtenerTodosClientes();
-    if (clientes != null) {
-        for (Cliente c : clientes) {
-            model.addRow(new Object[]{
-                c.getIdCliente(),
-                c.getCedula(),
-                c.getPrimerNombre(),
-                c.getSegundoNombre(),
-                c.getPrimerApellido(),
-                c.getSegundoApellido(),
-                c.getContacto()
-            });
+        List<Cliente> clientes = controlador.obtenerTodosClientes();
+        if (clientes != null) {
+            for (Cliente c : clientes) {
+                model.addRow(new Object[]{
+                    c.getIdCliente(),
+                    c.getCedula(),
+                    c.getPrimerNombre(),
+                    c.getSegundoNombre(),
+                    c.getPrimerApellido(),
+                    c.getSegundoApellido(),
+                    c.getContacto()
+                });
+            }
         }
     }
-}
-private void limpiarCampos() {
-    jTextFieldCedula.setText("");
-    jTextFieldPrimerNombre.setText("");
-    jTextFieldSegundoNombre.setText("");
-    jTextFieldPrimerApellido.setText("");
-    jTextFieldSegundoApellido.setText("");
-    jTextFieldContacto.setText("");
-    idClienteSeleccionado = -1;
-    TablaClientes.clearSelection();
-}
+
+    private void limpiarCampos() {
+        jTextFieldCedula.setText("");
+        jTextFieldPrimerNombre.setText("");
+        jTextFieldSegundoNombre.setText("");
+        jTextFieldPrimerApellido.setText("");
+        jTextFieldSegundoApellido.setText("");
+        jTextFieldContacto.setText("");
+        idClienteSeleccionado = -1;
+        TablaClientes.clearSelection();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -214,33 +213,34 @@ private void limpiarCampos() {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jButtonEliminar)
-                .addGap(30, 30, 30)
-                .addComponent(jButtonLimpiar)
-                .addGap(46, 46, 46)
-                .addComponent(jButtonActualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButtonGuardar)
-                .addGap(18, 18, 18))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldSegundoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                            .addComponent(jTextFieldPrimerApellido)
+                            .addComponent(jTextFieldSegundoApellido)
+                            .addComponent(jTextFieldPrimerNombre)
+                            .addComponent(jTextFieldCedula)
+                            .addComponent(jTextFieldContacto))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButtonEliminar)
+                        .addGap(44, 44, 44)
+                        .addComponent(jButtonLimpiar)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButtonActualizar)
+                        .addGap(34, 34, 34)
+                        .addComponent(jButtonGuardar)
+                        .addGap(28, 28, 28))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,32 +250,32 @@ private void limpiarCampos() {
                     .addComponent(jTextFieldPrimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(39, 39, 39)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldSegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(34, 34, 34)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonActualizar)
                     .addComponent(jButtonEliminar)
                     .addComponent(jButtonLimpiar)
+                    .addComponent(jButtonActualizar)
                     .addComponent(jButtonGuardar))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
         );
 
         jPanel1.setBackground(new java.awt.Color(40, 86, 115));
@@ -360,123 +360,123 @@ private void limpiarCampos() {
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
-   
+
     private void jTextFieldPrimerNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrimerNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPrimerNombreActionPerformed
-   
+
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         try {
-        String cedula = jTextFieldCedula.getText().trim();
-        String primerNombre = jTextFieldPrimerNombre.getText().trim();
-        String segundoNombre = jTextFieldSegundoNombre.getText().trim();
-        String primerApellido = jTextFieldPrimerApellido.getText().trim();
-        String segundoApellido = jTextFieldSegundoApellido.getText().trim();
-        String contacto = jTextFieldContacto.getText().trim();
+            String cedula = jTextFieldCedula.getText().trim();
+            String primerNombre = jTextFieldPrimerNombre.getText().trim();
+            String segundoNombre = jTextFieldSegundoNombre.getText().trim();
+            String primerApellido = jTextFieldPrimerApellido.getText().trim();
+            String segundoApellido = jTextFieldSegundoApellido.getText().trim();
+            String contacto = jTextFieldContacto.getText().trim();
 
-        // Validaciones básicas
-        if (cedula.isEmpty() || primerNombre.isEmpty() || primerApellido.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete los campos obligatorios: Cédula, Primer Nombre y Primer Apellido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            // Validaciones básicas
+            if (cedula.isEmpty() || primerNombre.isEmpty() || primerApellido.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, complete los campos obligatorios: Cédula, Primer Nombre y Primer Apellido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Crear el objeto Cliente (asumiendo que tienes un constructor o setters)
+            Cliente cliente = new Cliente();
+            cliente.setCedula(cedula);
+            cliente.setPrimerNombre(primerNombre);
+            cliente.setSegundoNombre(segundoNombre);
+            cliente.setPrimerApellido(primerApellido);
+            cliente.setSegundoApellido(segundoApellido);
+            cliente.setContacto(contacto);
+
+            controlador.crearCliente(cliente);  // Método en tu controlador que inserta cliente en DB
+
+            limpiarCampos();
+            cargarTablaClientes();
+
+            JOptionPane.showMessageDialog(this, "Cliente guardado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        // Crear el objeto Cliente (asumiendo que tienes un constructor o setters)
-        Cliente cliente = new Cliente();
-        cliente.setCedula(cedula);
-        cliente.setPrimerNombre(primerNombre);
-        cliente.setSegundoNombre(segundoNombre);
-        cliente.setPrimerApellido(primerApellido);
-        cliente.setSegundoApellido(segundoApellido);
-        cliente.setContacto(contacto);
-
-        controlador.crearCliente(cliente);  // Método en tu controlador que inserta cliente en DB
-
-        limpiarCampos();
-        cargarTablaClientes();
-
-        JOptionPane.showMessageDialog(this, "Cliente guardado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al guardar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-  String texto = jTextFieldBuscar.getText().toLowerCase();
-    DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
-    model.setRowCount(0);
+        String texto = jTextFieldBuscar.getText().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
+        model.setRowCount(0);
 
-    List<Cliente> clientes = controlador.obtenerTodosClientes();
-    for (Cliente c : clientes) {
-        String nombreCompleto = (c.getPrimerNombre() + " " + c.getSegundoNombre() + " " +
-                                 c.getPrimerApellido() + " " + c.getSegundoApellido()).toLowerCase();
-        if (nombreCompleto.contains(texto)) {
-            model.addRow(new Object[]{
-                c.getIdCliente(),
-                c.getCedula(),
-                c.getPrimerNombre(),
-                c.getSegundoNombre(),
-                c.getPrimerApellido(),
-                c.getSegundoApellido(),
-                c.getContacto()
-            });
+        List<Cliente> clientes = controlador.obtenerTodosClientes();
+        for (Cliente c : clientes) {
+            String nombreCompleto = (c.getPrimerNombre() + " " + c.getSegundoNombre() + " "
+                    + c.getPrimerApellido() + " " + c.getSegundoApellido()).toLowerCase();
+            if (nombreCompleto.contains(texto)) {
+                model.addRow(new Object[]{
+                    c.getIdCliente(),
+                    c.getCedula(),
+                    c.getPrimerNombre(),
+                    c.getSegundoNombre(),
+                    c.getPrimerApellido(),
+                    c.getSegundoApellido(),
+                    c.getContacto()
+                });
+            }
         }
-    }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if (idClienteSeleccionado == -1) {
-        JOptionPane.showMessageDialog(this, "Seleccione un cliente para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    int confirm = JOptionPane.showConfirmDialog(this,
-            "¿Está seguro de eliminar el cliente seleccionado?",
-            "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "¿Está seguro de eliminar el cliente seleccionado?",
+                "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
-    if (confirm == JOptionPane.YES_OPTION) {
-        controlador.eliminarCliente(idClienteSeleccionado);
-        limpiarCampos();
-        cargarTablaClientes();
-    }
+        if (confirm == JOptionPane.YES_OPTION) {
+            controlador.eliminarCliente(idClienteSeleccionado);
+            limpiarCampos();
+            cargarTablaClientes();
+        }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
         if (idClienteSeleccionado == -1) {
-        JOptionPane.showMessageDialog(this, "Selecciona un cliente para actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    try {
-        String cedula = jTextFieldCedula.getText().trim();
-        String primerNombre = jTextFieldPrimerNombre.getText().trim();
-        String segundoNombre = jTextFieldSegundoNombre.getText().trim();
-        String primerApellido = jTextFieldPrimerApellido.getText().trim();
-        String segundoApellido = jTextFieldSegundoApellido.getText().trim();
-        String contacto = jTextFieldContacto.getText().trim();
-
-        if (cedula.isEmpty() || primerNombre.isEmpty() || primerApellido.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete los campos obligatorios: Cédula, Primer Nombre y Primer Apellido.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecciona un cliente para actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Cliente clienteActualizado = new Cliente();
-        clienteActualizado.setIdCliente(idClienteSeleccionado);
-        clienteActualizado.setCedula(cedula);
-        clienteActualizado.setPrimerNombre(primerNombre);
-        clienteActualizado.setSegundoNombre(segundoNombre);
-        clienteActualizado.setPrimerApellido(primerApellido);
-        clienteActualizado.setSegundoApellido(segundoApellido);
-        clienteActualizado.setContacto(contacto);
+        try {
+            String cedula = jTextFieldCedula.getText().trim();
+            String primerNombre = jTextFieldPrimerNombre.getText().trim();
+            String segundoNombre = jTextFieldSegundoNombre.getText().trim();
+            String primerApellido = jTextFieldPrimerApellido.getText().trim();
+            String segundoApellido = jTextFieldSegundoApellido.getText().trim();
+            String contacto = jTextFieldContacto.getText().trim();
 
-        controlador.actualizarCliente(clienteActualizado);
-        limpiarCampos();
-        cargarTablaClientes();
+            if (cedula.isEmpty() || primerNombre.isEmpty() || primerApellido.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, complete los campos obligatorios: Cédula, Primer Nombre y Primer Apellido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        JOptionPane.showMessageDialog(this, "Cliente actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            Cliente clienteActualizado = new Cliente();
+            clienteActualizado.setIdCliente(idClienteSeleccionado);
+            clienteActualizado.setCedula(cedula);
+            clienteActualizado.setPrimerNombre(primerNombre);
+            clienteActualizado.setSegundoNombre(segundoNombre);
+            clienteActualizado.setPrimerApellido(primerApellido);
+            clienteActualizado.setSegundoApellido(segundoApellido);
+            clienteActualizado.setContacto(contacto);
 
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al actualizar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            controlador.actualizarCliente(clienteActualizado);
+            limpiarCampos();
+            cargarTablaClientes();
+
+            JOptionPane.showMessageDialog(this, "Cliente actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
@@ -501,38 +501,38 @@ private void limpiarCampos() {
     }//GEN-LAST:event_jTextFieldContactoActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-           jTextFieldCedula.setText("");
-    jTextFieldPrimerNombre.setText("");
-    jTextFieldSegundoNombre.setText("");
-    jTextFieldPrimerApellido.setText("");
-    jTextFieldSegundoApellido.setText("");
-    jTextFieldContacto.setText("");
-    TablaClientes.clearSelection();
-    idClienteSeleccionado = -1;
+        jTextFieldCedula.setText("");
+        jTextFieldPrimerNombre.setText("");
+        jTextFieldSegundoNombre.setText("");
+        jTextFieldPrimerApellido.setText("");
+        jTextFieldSegundoApellido.setText("");
+        jTextFieldContacto.setText("");
+        TablaClientes.clearSelection();
+        idClienteSeleccionado = -1;
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed
         String texto = jTextFieldBuscar.getText().toLowerCase();
-    DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
-    model.setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
+        model.setRowCount(0);
 
-    List<Cliente> clientes = controlador.obtenerTodosClientes();
-    for (Cliente c : clientes) {
-        String nombreCompleto = (c.getPrimerNombre() + " " + c.getSegundoNombre() + " " +
-                                 c.getPrimerApellido() + " " + c.getSegundoApellido()).toLowerCase();
+        List<Cliente> clientes = controlador.obtenerTodosClientes();
+        for (Cliente c : clientes) {
+            String nombreCompleto = (c.getPrimerNombre() + " " + c.getSegundoNombre() + " "
+                    + c.getPrimerApellido() + " " + c.getSegundoApellido()).toLowerCase();
 
-        if (nombreCompleto.contains(texto)) {
-            model.addRow(new Object[]{
-                c.getIdCliente(),
-                c.getCedula(),
-                c.getPrimerNombre(),
-                c.getSegundoNombre(),
-                c.getPrimerApellido(),
-                c.getSegundoApellido(),
-                c.getContacto()
-            });
+            if (nombreCompleto.contains(texto)) {
+                model.addRow(new Object[]{
+                    c.getIdCliente(),
+                    c.getCedula(),
+                    c.getPrimerNombre(),
+                    c.getSegundoNombre(),
+                    c.getPrimerApellido(),
+                    c.getSegundoApellido(),
+                    c.getContacto()
+                });
+            }
         }
-    }
     }//GEN-LAST:event_jTextFieldBuscarActionPerformed
 
 

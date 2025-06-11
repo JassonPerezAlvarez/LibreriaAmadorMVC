@@ -1,6 +1,7 @@
 package Modelo;
 
 public class Cliente {
+
     private int idCliente;
     private String primerNombre;
     private String segundoNombre;

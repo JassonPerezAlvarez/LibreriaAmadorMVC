@@ -124,6 +124,8 @@ public class VistaProducto extends javax.swing.JPanel {
             }
         });
 
+        jButtonGuardar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +133,8 @@ public class VistaProducto extends javax.swing.JPanel {
             }
         });
 
+        jButtonEliminar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEliminar.setText("Eliminar");
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +142,8 @@ public class VistaProducto extends javax.swing.JPanel {
             }
         });
 
+        jButtonActualizar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonActualizar.setText("Actualizar");
         jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,6 +257,8 @@ public class VistaProducto extends javax.swing.JPanel {
             }
         });
 
+        jButtonBuscar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

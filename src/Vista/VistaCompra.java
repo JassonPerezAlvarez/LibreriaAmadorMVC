@@ -432,11 +432,24 @@ public class VistaCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+      //  jTextFieldIDCompra.setText("");
+   //     jTextFieldIDProveedor.setText("");
+     //   jDateChooser1.setDate(null);
+       // jTableCompra.clearSelection();
+       // idCompraSeleccionada = -1;
+       boolean camposVacios = jTextFieldIDCompra.getText().trim().isEmpty() &&
+                           jTextFieldIDProveedor.getText().trim().isEmpty() &&
+                           jDateChooser1.getDate() == null;
+
+    if (camposVacios) {
+        JOptionPane.showMessageDialog(this, "Todos los campos ya están vacíos.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    } else {
         jTextFieldIDCompra.setText("");
         jTextFieldIDProveedor.setText("");
         jDateChooser1.setDate(null);
         jTableCompra.clearSelection();
         idCompraSeleccionada = -1;
+    }
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
 

@@ -401,26 +401,32 @@ public class VistaCliente extends JPanel {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        String texto = jTextFieldBuscar.getText().toLowerCase();
-        DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
-        model.setRowCount(0);
+        String texto = jTextFieldBuscar.getText().trim().toLowerCase();
 
-        List<Cliente> clientes = controlador.obtenerTodosClientes();
-        for (Cliente c : clientes) {
-            String nombreCompleto = (c.getPrimerNombre() + " " + c.getSegundoNombre() + " "
-                    + c.getPrimerApellido() + " " + c.getSegundoApellido()).toLowerCase();
-            if (nombreCompleto.contains(texto)) {
-                model.addRow(new Object[]{
-                    c.getIdCliente(),
-                    c.getCedula(),
-                    c.getPrimerNombre(),
-                    c.getSegundoNombre(),
-                    c.getPrimerApellido(),
-                    c.getSegundoApellido(),
-                    c.getContacto()
-                });
-            }
+    if (texto.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese un nombre o apellido para buscar.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+        return; // Salir del método si el campo está vacío
+    }
+
+    DefaultTableModel model = (DefaultTableModel) TablaClientes.getModel();
+    model.setRowCount(0);
+
+    List<Cliente> clientes = controlador.obtenerTodosClientes();
+    for (Cliente c : clientes) {
+        String nombreCompleto = (c.getPrimerNombre() + " " + c.getSegundoNombre() + " "
+                + c.getPrimerApellido() + " " + c.getSegundoApellido()).toLowerCase();
+        if (nombreCompleto.contains(texto)) {
+            model.addRow(new Object[]{
+                c.getIdCliente(),
+                c.getCedula(),
+                c.getPrimerNombre(),
+                c.getSegundoNombre(),
+                c.getPrimerApellido(),
+                c.getSegundoApellido(),
+                c.getContacto()
+            });
         }
+    }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed

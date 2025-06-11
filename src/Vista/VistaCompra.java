@@ -371,21 +371,35 @@ public class VistaCompra extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        String texto = jTextFieldBuscar.getText().toLowerCase();
-        DefaultTableModel model = (DefaultTableModel) jTableCompra.getModel();
-        model.setRowCount(0);
+       String texto = jTextFieldBuscar.getText().trim().toLowerCase();
 
-        List<Compra> compras = controlador.obtenerTodasCompras();
-        for (Compra c : compras) {
-            String idProveedorStr = String.valueOf(c.getIdProveedor());
-            if (idProveedorStr.contains(texto)) {
-                model.addRow(new Object[]{
-                    c.getIdCompra(),
-                    c.getFechaCompra(),
-                    c.getIdProveedor()
-                });
-            }
+    if (texto.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de proveedor para buscar.", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) jTableCompra.getModel();
+    model.setRowCount(0);
+
+    List<Compra> compras = controlador.obtenerTodasCompras();
+    boolean resultadoEncontrado = false;
+
+    for (Compra c : compras) {
+        String idProveedorStr = String.valueOf(c.getIdProveedor());
+        if (idProveedorStr.contains(texto)) {
+            model.addRow(new Object[]{
+                c.getIdCompra(),
+                c.getFechaCompra(),
+                c.getIdProveedor()
+            });
+            resultadoEncontrado = true;
         }
+    }
+
+    // Opcional: mostrar mensaje si no hubo coincidencias
+    if (!resultadoEncontrado) {
+        JOptionPane.showMessageDialog(this, "No se encontraron compras con ese ID de proveedor.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+    }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed

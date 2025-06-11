@@ -149,6 +149,8 @@ jTableProveedores.setModel(new javax.swing.table.DefaultTableModel(
             }
         });
 
+        jButtonGuardar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +158,8 @@ jTableProveedores.setModel(new javax.swing.table.DefaultTableModel(
             }
         });
 
+        jButtonEliminar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEliminar.setText("Eliminar");
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +167,8 @@ jTableProveedores.setModel(new javax.swing.table.DefaultTableModel(
             }
         });
 
+        jButtonActualizar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonActualizar.setText("Actualizar");
         jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,6 +212,8 @@ jTableProveedores.setModel(new javax.swing.table.DefaultTableModel(
             }
         });
 
+        jButtonLimpiar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpiar.setText("Limpiar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -316,6 +324,8 @@ jTableProveedores.setModel(new javax.swing.table.DefaultTableModel(
             }
         });
 
+        jButtonBuscar.setBackground(new java.awt.Color(58, 114, 142));
+        jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

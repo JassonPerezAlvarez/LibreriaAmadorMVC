@@ -501,6 +501,17 @@ public class VistaCliente extends JPanel {
     }//GEN-LAST:event_jTextFieldContactoActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+
+    if (jTextFieldCedula.getText().trim().isEmpty() &&
+        jTextFieldPrimerNombre.getText().trim().isEmpty() &&
+        jTextFieldSegundoNombre.getText().trim().isEmpty() &&
+        jTextFieldPrimerApellido.getText().trim().isEmpty() &&
+        jTextFieldSegundoApellido.getText().trim().isEmpty() &&
+        jTextFieldContacto.getText().trim().isEmpty()) {
+        
+        JOptionPane.showMessageDialog(this, "Todos los campos ya están vacíos.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        // Limpiar campos
         jTextFieldCedula.setText("");
         jTextFieldPrimerNombre.setText("");
         jTextFieldSegundoNombre.setText("");
@@ -509,6 +520,7 @@ public class VistaCliente extends JPanel {
         jTextFieldContacto.setText("");
         TablaClientes.clearSelection();
         idClienteSeleccionado = -1;
+    }
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed

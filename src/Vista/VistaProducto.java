@@ -406,13 +406,19 @@ public class VistaProducto extends javax.swing.JPanel {
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
         int fila = jTableProducto.getSelectedRow();
-        if (fila != -1) {
+    if (fila != -1) {
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar este producto?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        
+        if (confirmacion == JOptionPane.YES_OPTION) {
             int id = (int) jTableProducto.getValueAt(fila, 0);
             controlador.eliminarProducto(id);
             limpiarCampos();
             cargarTabla();
+            JOptionPane.showMessageDialog(this, "Producto eliminado correctamente.");
         }
-
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto para eliminar.");
+    }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed

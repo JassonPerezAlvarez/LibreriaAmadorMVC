@@ -403,21 +403,26 @@ public class VistaProducto extends javax.swing.JPanel {
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
         // TODO add your handling code here:
-        if (idProductoSeleccionado == -1) {
-            return;
-        }
+         if (idProductoSeleccionado == -1) {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto de la tabla para actualizar.", "Ningún producto seleccionado", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
-        String nombre = jTextFieldNombre.getText();
-        String descripcion = jTextFieldDescripcion.getText();
-        int cantidad = Integer.parseInt(jTextFieldCantidad.getText());
-        float precioCompra = Float.parseFloat(jTextFieldPrecioCompra.getText());
-        float precioVenta = Float.parseFloat(jTextFieldPrecioVenta.getText());
+    try {
+        String nombre = jTextFieldNombre.getText().trim();
+        String descripcion = jTextFieldDescripcion.getText().trim();
+        int cantidad = Integer.parseInt(jTextFieldCantidad.getText().trim());
+        float precioCompra = Float.parseFloat(jTextFieldPrecioCompra.getText().trim());
+        float precioVenta = Float.parseFloat(jTextFieldPrecioVenta.getText().trim());
 
         controlador.actualizarProducto(idProductoSeleccionado, nombre, descripcion, cantidad, precioCompra, precioVenta);
         limpiarCampos();
         cargarTabla();
 
-
+        JOptionPane.showMessageDialog(this, "Producto actualizado correctamente.", "Actualización exitosa", JOptionPane.INFORMATION_MESSAGE);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Verifique que los campos de cantidad, precio de compra y precio de venta sean válidos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
 

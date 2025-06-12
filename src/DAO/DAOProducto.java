@@ -125,5 +125,9 @@ public class DAOProducto {
             System.err.println("Error: " + e.getMessage());
         }
     } 
+
+    public List<Producto> obtenerProductosVencidos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

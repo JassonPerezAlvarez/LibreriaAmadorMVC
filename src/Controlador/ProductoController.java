@@ -98,4 +98,8 @@ public class ProductoController {
         controlador.eliminarProducto(1);
     }
 
+    public List<Producto> obtenerProductosVencidos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

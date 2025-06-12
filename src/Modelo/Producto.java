@@ -61,4 +61,8 @@ public class Producto {
     public void setPrecioVent(float precioVent) {
         this.precioVent = precioVent;
     }
+
+    public Object getFechaVencimiento() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

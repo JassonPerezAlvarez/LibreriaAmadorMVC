@@ -12,11 +12,32 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.UnitValue;
+
+import java.awt.FileDialog;
+import java.nio.file.Paths;
+import java.util.List;
+import javax.swing.JOptionPane;
+
+import Modelo.Producto;
+import Controlador.ProductoController;
+import DAO.DAOProducto;
+
+
 
 public class VistaVenta extends javax.swing.JPanel {
+private javax.swing.JButton jButtonReporteVentas;
+private javax.swing.JButton jButtonReporteVencidos;
 
     public VistaVenta() {
         initComponents();
+        
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID Detalle");
         modelo.addColumn("Nombre Producto");
@@ -24,6 +45,27 @@ public class VistaVenta extends javax.swing.JPanel {
         modelo.addColumn("Precio");
 
         jTableDetalleVenta.setModel(modelo);
+        
+jButtonGenerarReporteVentas = new javax.swing.JButton("Generar Reporte de Ventas");
+jButtonGenerarReporteVentas.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        generarReporteVentas();
+    }
+            private void generarReporteVentas() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
+jButtonReporteVencidos = new javax.swing.JButton("Generar Productos Vencidos");
+jButtonReporteVencidos.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        generarReporteProductosVencidos();
+    }
+
+            private void generarReporteProductosVencidos() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
+
 
         cargarVentas();
         jTableVentas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,6 +185,8 @@ private void cargarDetallesVenta(int idVenta) {
         jButtonActualizar = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jTextFieldIdClientes = new javax.swing.JTextField();
+        jButtonGenerarReporteVentas = new javax.swing.JButton();
+        jButtonGenerarReporteProductosVencidos = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableDetalleVenta = new javax.swing.JTable();
@@ -237,6 +281,20 @@ private void cargarDetallesVenta(int idVenta) {
             }
         });
 
+        jButtonGenerarReporteVentas.setText("Generar Reporte Ventas");
+        jButtonGenerarReporteVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerarReporteVentasActionPerformed(evt);
+            }
+        });
+
+        jButtonGenerarReporteProductosVencidos.setText("Generar Reporte de Productos Vencidos");
+        jButtonGenerarReporteProductosVencidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerarReporteProductosVencidosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -264,21 +322,29 @@ private void cargarDetallesVenta(int idVenta) {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonEliminar)
-                    .addComponent(jButtonActualizarVenta))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jButtonEliminarVenta))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonEliminar)
+                            .addComponent(jButtonActualizarVenta))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(jButtonEliminarVenta))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jButtonActualizar)))
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonGuardar)
+                            .addComponent(jButtonGuardarVenta)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButtonActualizar)))
-                .addGap(60, 60, 60)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonGuardar)
-                    .addComponent(jButtonGuardarVenta)))
+                        .addComponent(jButtonGenerarReporteProductosVencidos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonGenerarReporteVentas)
+                        .addGap(24, 24, 24))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +370,11 @@ private void cargarDetallesVenta(int idVenta) {
                     .addComponent(jButtonEliminar)
                     .addComponent(jButtonActualizar)
                     .addComponent(jButtonGuardar))
-                .addGap(388, 388, 388)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGenerarReporteVentas)
+                    .addComponent(jButtonGenerarReporteProductosVencidos))
+                .addGap(338, 338, 338)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonActualizarVenta)
                     .addComponent(jButtonEliminarVenta)
@@ -412,7 +482,7 @@ private void cargarDetallesVenta(int idVenta) {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 564, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -521,6 +591,128 @@ private void cargarDetallesVenta(int idVenta) {
         }
     }//GEN-LAST:event_jButtonAgregarDetalleVentaActionPerformed
 
+    private void jButtonGenerarReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarReporteVentasActionPerformed
+ try {
+        FileDialog dialogoArchivo = new FileDialog((java.awt.Frame) null, "Guardar Reporte de Ventas", FileDialog.SAVE);
+        dialogoArchivo.setFile("ReporteVentas.pdf");
+        dialogoArchivo.setVisible(true);
+
+        String ruta = dialogoArchivo.getDirectory();
+        String nombreArchivo = dialogoArchivo.getFile();
+
+        if (ruta == null || nombreArchivo == null) {
+            JOptionPane.showMessageDialog(this, "Operación cancelada.");
+            return;
+        }
+
+        if (!nombreArchivo.toLowerCase().endsWith(".pdf")) {
+            nombreArchivo += ".pdf";
+        }
+
+        String rutaCompleta = Paths.get(ruta, nombreArchivo).toString();
+
+        PdfWriter writer = new PdfWriter(rutaCompleta);
+        PdfDocument pdf = new PdfDocument(writer);
+        try (Document documento = new Document(pdf)) {
+
+            documento.add(new Paragraph("Reporte de Ventas")
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(20)
+                    .setBold());
+
+            documento.add(new Paragraph("Fecha: " + new java.util.Date())
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(12));
+
+            documento.add(new Paragraph("\n"));
+
+            Table tabla = new Table(3);
+            tabla.setWidth(UnitValue.createPercentValue(100));
+            tabla.addHeaderCell("ID Venta").setBold();
+            tabla.addHeaderCell("Fecha de Venta").setBold();
+            tabla.addHeaderCell("ID Cliente").setBold();
+
+            DAOVenta dao = new DAOVenta();
+            List<Venta> ventas = dao.obtenerTodasLasVentas();
+
+            for (Venta venta : ventas) {
+                tabla.addCell(String.valueOf(venta.getIdVenta()));
+                tabla.addCell(venta.getFechaVenta().toString());
+                tabla.addCell(String.valueOf(venta.getIdCliente()));
+            }
+
+            documento.add(tabla);
+            documento.add(new Paragraph("\nGenerado automáticamente.").setFontSize(10).setTextAlignment(TextAlignment.RIGHT));
+        }
+
+        JOptionPane.showMessageDialog(this, "Reporte generado exitosamente.");
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al generar el reporte: " + e.getMessage());
+    }       
+    }//GEN-LAST:event_jButtonGenerarReporteVentasActionPerformed
+
+    private void jButtonGenerarReporteProductosVencidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarReporteProductosVencidosActionPerformed
+    try {
+        FileDialog dialogoArchivo = new FileDialog((java.awt.Frame) null, "Guardar Reporte de Productos Vencidos", FileDialog.SAVE);
+        dialogoArchivo.setFile("ProductosVencidos.pdf");
+        dialogoArchivo.setVisible(true);
+
+        String ruta = dialogoArchivo.getDirectory();
+        String nombreArchivo = dialogoArchivo.getFile();
+
+        if (ruta == null || nombreArchivo == null) {
+            JOptionPane.showMessageDialog(this, "Operación cancelada.");
+            return;
+        }
+
+        if (!nombreArchivo.toLowerCase().endsWith(".pdf")) {
+            nombreArchivo += ".pdf";
+        }
+
+        String rutaCompleta = Paths.get(ruta, nombreArchivo).toString();
+
+        PdfWriter writer = new PdfWriter(rutaCompleta);
+        PdfDocument pdf = new PdfDocument(writer);
+        try (Document documento = new Document(pdf)) {
+
+            documento.add(new Paragraph("Reporte de Productos Vencidos")
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(20)
+                    .setBold());
+
+            documento.add(new Paragraph("Fecha: " + new java.util.Date())
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(12));
+
+            documento.add(new Paragraph("\n"));
+
+            Table tabla = new Table(3);
+            tabla.setWidth(UnitValue.createPercentValue(100));
+            tabla.addHeaderCell("ID Producto").setBold();
+            tabla.addHeaderCell("Nombre").setBold();
+            tabla.addHeaderCell("Fecha de Vencimiento").setBold();
+
+            DAOProducto daoProducto = new DAOProducto();
+            List<Producto> vencidos = daoProducto.obtenerProductosVencidos();
+
+            for (Producto p : vencidos) {
+                tabla.addCell(String.valueOf(p.getIdProducto()));
+                tabla.addCell(p.getNombre());
+                tabla.addCell(p.getFechaVencimiento().toString());
+            }
+
+            documento.add(tabla);
+            documento.add(new Paragraph("\nGenerado automáticamente.").setFontSize(10).setTextAlignment(TextAlignment.RIGHT));
+        }
+
+        JOptionPane.showMessageDialog(this, "Reporte generado exitosamente.");
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al generar el reporte: " + e.getMessage());
+    }
+    }//GEN-LAST:event_jButtonGenerarReporteProductosVencidosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonActualizar;
@@ -529,6 +721,8 @@ private void cargarDetallesVenta(int idVenta) {
     private javax.swing.JButton jButtonBuscarVenta;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonEliminarVenta;
+    private javax.swing.JButton jButtonGenerarReporteProductosVencidos;
+    private javax.swing.JButton jButtonGenerarReporteVentas;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonGuardarVenta;
     private javax.swing.JButton jButtonQuitarDetalleVenta;
